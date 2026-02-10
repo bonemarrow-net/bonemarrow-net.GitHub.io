@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bone Marrow</title>
+
+  <style>
+    body {
+      margin: 20px;
+      max-width: 720px;
+      background: #000;
+      color: #fff;
+      line-height: 1.5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Arial, Helvetica, sans-serif;
+    }
+
+    h1, h2, h3 {
+      font-weight: normal;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #444;
+      margin: 20px 0;
+    }
+
+    button {
+      background: none;
+      border: 1px solid currentColor;
+      font: inherit;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    /* ENTER PAGE */
+    #gate {
+      color: #4aa3ff;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    #gate button {
+      color: #4aa3ff;
+    }
+
+    #gate button:hover {
+      background: #4aa3ff;
+      color: #000;
+    }
+
+    /* ammonite image */
+    #sigil {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      max-width: 220px;
+      opacity: 0.75;
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ENTER PAGE -->
+  <main id="gate">
+    <h1>ENTER HERE</h1>
+    <h2>THRESHOLD</h2>
+
+    <p>
+      <button id="enterBtn" type="button">[ ENTER ]</button>
+    </p>
+
+    <img
+      id="sigil"
+      src="ammonite.jpg"
+      alt=""
+    />
+
+    <noscript>
+      <p>JavaScript is required to enter.</p>
+    </noscript>
+  </main>
+
+  <!-- MAIN ONE-PAGE SITE -->
+  <main id="site" hidden>
+    <h1>BONE MARROW</h1>
+
+    <p>
+      <a href="#about">ABOUT</a> |
+      <a href="#offerings">OFFERINGS</a> |
+      <a href="#pricing">PRICING</a> |
+      <a href="#contact">CONTACT</a>
+    </p>
+
+    <hr />
+
+    <section id="about">
+      <h2>ABOUT</h2>
+    </section>
+
+    <hr />
+
+    <section id="offerings">
+      <h2>OFFERINGS</h2>
+      <h3>ASTROLOGY READING</h3>
+      <h3>EXTRACTION &amp; SOUL RETRIEVAL</h3>
+      <h3>SPIRITUAL DIRECTION</h3>
+    </section>
+
+    <hr />
+
+    <section id="pricing">
+      <h2>PRICING</h2>
+      <h3>$100</h3>
+    </section>
+
+    <hr />
+
+    <section id="contact">
+      <h2>CONTACT</h2>
+      <h3>EMAIL</h3>
+      <h3>BOOKING</h3>
+      <h3>PAYMENT</h3>
+    </section>
+
+    <hr />
+
+    <footer>
+      <p>THIS SITE CHANGES SLOWLY.</p>
+      <p>
+        <button id="resetBtn" type="button">[ RETURN TO THRESHOLD ]</button>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const KEY = "bm_entered_v1";
+      const gate = document.getElementById("gate");
+      const site = document.getElementById("site");
+      const enterBtn = document.getElementById("enterBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      function showSite() {
+        gate.hidden = true;
+        site.hidden = false;
+        window.scrollTo(0, 0);
+      }
+
+      function showGate() {
+        site.hidden = true;
+        gate.hidden = false;
+        window.scrollTo(0, 0);
+      }
+
+      if (localStorage.getItem(KEY) === "yes") {
+        showSite();
+      }
+
+      enterBtn.addEventListener("click", () => {
+        localStorage.setItem(KEY, "yes");
+        showSite();
+      });
+
+      resetBtn.addEventListener("click", () => {
+        localStorage.removeItem(KEY);
+        showGate();
+      });
+    })();
+  </script>
+
+</body>
+</html>
